@@ -5,7 +5,7 @@ import { Link, Outlet } from "react-router-dom";
 const Main = () => {
   return (
     <div>
-      <nav className="bg-base-100 shadow-md">
+      <nav className="bg-base-100 shadow-md mb-10">
         <div className="navbar container mx-auto">
           <div className="flex-1">
             <Link to="/" className="normal-case text-xl">
