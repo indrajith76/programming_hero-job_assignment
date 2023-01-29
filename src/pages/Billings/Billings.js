@@ -1,4 +1,5 @@
 import React from "react";
+import ModalForm from "../../components/ModalForm/ModalForm";
 
 const Billings = () => {
   return (
@@ -20,9 +21,12 @@ const Billings = () => {
             </div>
           </div>
           <div>
-            <button className="bg-[#00421d] text-white px-3 py-1">
+            <label
+              htmlFor="modalForm"
+              className="bg-[#005525] text-white px-3 py-1 hover:cursor-pointer"
+            >
               Add New Bill
-            </button>
+            </label>
           </div>
         </div>
       </section>
@@ -57,6 +61,8 @@ const Billings = () => {
           </table>
         </div>
       </section>
+
+      <ModalForm />
     </div>
   );
 };
