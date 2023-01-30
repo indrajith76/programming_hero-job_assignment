@@ -36,22 +36,28 @@ const Billings = () => {
           <table className="table w-full table-compact">
             <thead>
               <tr>
-                <th className="border">Billing ID</th>
-                <th className="border">Full Name</th>
-                <th className="border">Email</th>
-                <th className="border">Phone</th>
-                <th className="border">Paid Amount</th>
-                <th className="border">Action</th>
+                <th className="border border-slate-300 bg-slate-200 text-slate-800">
+                  Billing ID
+                </th>
+                <th className="border border-slate-300 bg-slate-200 text-slate-800">
+                  Full Name
+                </th>
+                <th className="border border-slate-300 bg-slate-200 text-slate-800">Email</th>
+                <th className="border border-slate-300 bg-slate-200 text-slate-800">Phone</th>
+                <th className="border border-slate-300 bg-slate-200 text-slate-800">
+                  Paid Amount
+                </th>
+                <th className="border border-slate-300 bg-slate-200 text-slate-800">Action</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td className="border">Billing ID</td>
-                <td className="border">Full Name</td>
-                <td className="border">Email</td>
-                <td className="border">Phone</td>
-                <td className="border">Paid Amount</td>
-                <td className="border w-40">
+                <td className="border border-slate-300 text-slate-800">Billing ID</td>
+                <td className="border border-slate-300 text-slate-800">Full Name</td>
+                <td className="border border-slate-300 text-slate-800">Email</td>
+                <td className="border border-slate-300 text-slate-800">Phone</td>
+                <td className="border border-slate-300 text-slate-800">Paid Amount</td>
+                <td className="border border-slate-300 text-slate-800 w-40">
                   <button>Edit</button>
                   <span className="mx-4">|</span>
                   <button>Delete</button>

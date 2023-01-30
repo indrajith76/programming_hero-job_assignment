@@ -1,80 +1,65 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import logo from '../../assets/logo.png';
+import { AuthContext } from "../../contexts/AuthProvider";
+import toast from "react-hot-toast";
 
 const SignIn = () => {
+  const { signIn, resetPassword, googleSignIn } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const navigate = useNavigate();
   const [isOnModal, setIsOnModal] = useState(true);
 
   const handleLogin = (data) => {
     const email = data.email;
     const password = data.password;
-    console.log(email,password)
-    /* signIn(email, password)
+    signIn(email, password)
       .then((result) => {
         const user = result.user;
         toast.success(
           `Login successfully. Congratulations ${user.displayName}.`
         );
-        setLoggedInUserEmail(user.email);
       })
       .catch((err) => {
-        console.error(err);
         toast.error(err.message.slice(22, err?.message?.length - 2));
-      }); */
+      });
   };
 
   const handleResetPassword = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
-    /* resetPassword(email)
+    resetPassword(email)
       .then(() => {
+        navigate("/billings");
         toast.success("Password reset successfully. Please check your email.");
         setIsOnModal(false);
       })
-      .catch((err) => console.error(err)); */
+      .catch((err) => console.error(err));
   };
 
   const googleSignHandler = () => {
-    /* googleSignIn()
+    googleSignIn()
       .then((result) => {
-        const user = result.user;
-        setLoggedInUserEmail(user.email);
-        const data = {
-          name: user.displayName,
-          email: user.email,
-          typeOfUser: "buyer",
-          image: user.photoURL,
-        };
-
-        fetch("https://techxbazar-server-side.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(data),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            toast.success("Login successfully.");
-          });
+        navigate("/billings");
+        toast.success("Successfully Sign Up!");
       })
-      .catch((err) => console.error(err)); */
+      .catch((err) => console.log(err));
   };
 
   return (
-      <div>
-        {/* <img src={logo} className="w-32 mx-auto" alt="" /> */}
+    <div>
+      {/* <img src={logo} className="w-32 mx-auto" alt="" /> */}
       <div className="border w-96 mx-auto p-5 my-16 rounded-lg">
         <h2 className="text-3xl text-center mb-7 mt-2 text-primary">Login</h2>
         <form onSubmit={handleSubmit(handleLogin)}>
-          <label htmlFor="email" className="text-slate-800">Email</label>
+          <label htmlFor="email" className="text-slate-800">
+            Email
+          </label>
           {errors?.email && (
             <small className="text-red-500 ml-3">
               * {errors?.email?.message}
@@ -84,11 +69,13 @@ const SignIn = () => {
             {...register("email", { required: "Please fil the input field" })}
             type="email"
             id="email"
-            className="w-full input input-bordered my-4"
+            className="w-full input input-bordered my-4 text-slate-800 border-slate-300"
             placeholder="Email"
           />
 
-          <label htmlFor="password" className="text-slate-800">Password</label>
+          <label htmlFor="password" className="text-slate-800">
+            Password
+          </label>
           {errors?.password && (
             <small className="text-red-500 ml-3">
               *{errors?.password?.message}
@@ -100,11 +87,14 @@ const SignIn = () => {
             })}
             type="password"
             id="password"
-            className="w-full input input-bordered my-4"
+            className="w-full input input-bordered my-4 text-slate-800 border-slate-300"
             placeholder="Password"
           />
 
-          <label htmlFor="resetPassword-Modal" className="cursor-pointer text-slate-800">
+          <label
+            htmlFor="resetPassword-Modal"
+            className="cursor-pointer text-slate-800"
+          >
             Forget password?
           </label>
           <input
@@ -142,12 +132,12 @@ const SignIn = () => {
               >
                 ✕
               </label>
-              <h3 className="text-lg font-bold">Reset your password</h3>
+              <h3 className="text-lg font-bold text-slate-800">Reset your password</h3>
               <form onSubmit={handleResetPassword}>
                 <input
                   type="email"
                   name="email"
-                  className="input input-bordered w-full my-3"
+                  className="input input-bordered w-full my-3 border-slate-300 text-slate-800"
                   placeholder="Enter your email"
                   required
                 />
